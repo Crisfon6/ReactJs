@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React2:(</title>
+</head>
+
+<body>
+    <div id="nav"></div>
+    <div id="carrousel"></div>
+    <div class="container">
+        <div id="cards"></div>
+    </div>
+    <div id="footer"></div>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+    <script>
+        let navBar = React.createElement("nav", {
+                className: "navbar navbar-dark bg-dark"
+            },
+            React.createElement("div", {
+                    className: "container-fluid"
+                },
+                React.createElement("a", {
+                        className: "navbar-brand",
+                        href: "#"
+                    }, "Crisfon6"
+
+                )));
+        ReactDOM.render(navBar, document.getElementById("nav"));
+    </script>
+    <script>
+        let images = ['./teacher2.png', './teacher.jpg', ]
+        let carrousel = React.createElement("div", {
+                id: "carouselExampleControls",
+                className: "carousel slide",
+                'data-bs-ride': "carousel"
+            },
+            React.createElement('div', {
+                    className: 'carousel-inner'
+                },
+
+                images.map((image, i) => {
+                        let classx = 'carousel-item ';
+                        if (i === 0) {
+                            classx += 'active';
+                        }
+                        return React.createElement('div', {
+                            className: classx,
+                            key: i,
+                        }, React.createElement('img', {
+                            className: "d-block w-100",
+                            src: image,
+
+                        }));
+                    }
+
+                ),
+            ),
+
+            React.createElement('button', {
+                    className: "carousel-control-prev",
+                    type: "button",
+                    'data-bs-target': "#carouselExampleControls",
+                    'data-bs-slide': "prev"
+                },
+                React.createElement('span', {
+                    className: "carousel-control-prev-icon",
+                    'aria-hidden': 'true'
+                }),
+                React.createElement('span', {
+                    className: "visually-hidden",
+                    'aria-hidden': 'true'
+                }, 'Previous')
+
+            ),
+            React.createElement('button', {
+                    className: "carousel-control-next",
+                    type: "button",
+                    'data-bs-target': "#carouselExampleControls",
+                    'data-bs-slide': "next"
+                },
+                React.createElement('span', {
+                    className: "carousel-control-next-icon",
+                    'aria-hidden': 'true'
+                }),
+                React.createElement('span', {
+                    className: "visually-hidden",
+                    'aria-hidden': 'true'
+                }, 'Next')
+
+            )
+        );
+        ReactDOM.render(carrousel, document.getElementById("carrousel"));
+    </script>
+    <script>
+        //get data
+        let data;
+        let cards;
+        fetch("https://rickandmortyapi.com/api/character").then(
+            (res) => res.json()
+        ).then(json => {
+            data = json.results;
+            cards = drawCards();
+            ReactDOM.render(cards, document.getElementById("cards"));
+        });
+    </script>
+    <script>
+        function drawCards() {
+            return React.createElement('div', {
+                    className: 'row row-cols-1 row-cols-md-2 g-4'
+                },
+                //meter esto ene l map
+                data.map((el, i) => {
+                    return React.createElement('div', {
+                            className: 'col',
+                            key: i
+                        },
+                        React.createElement('div', {
+                                className: 'card h-100'
+                            },
+                            React.createElement('img', {
+                                className: "card-img-top",
+                                src: el.image, //replace this
+
+                            }),
+                            React.createElement('div', {
+                                    className: 'card-body'
+                                },
+                                React.createElement('h5', {
+                                    className: 'card-title'
+                                }, el.name), //put title
+                                React.createElement('p', {
+                                    className: 'card-text'
+                                }, `Species: ${el.species}`) //put title
+
+                            )
+
+                        )
+
+                    )
+                }));
+        }
+    </script>
+
+
+
+
+</body>
+
+</html>

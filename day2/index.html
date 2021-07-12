@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+    <script>
+        /*
+                                                        let h1Element = React.createElement("h1", {
+                                                            id: "test"
+                                                        }, "Carne Asada");
+                                                        let h2Element = React.createElement("h1", {
+                                                            id: "test2",
+                                                            key: "pollo"
+                                                        }, "Pollo");
+                                                        ReactDOM.render([h1Element, h2Element], document.getElementById("root"));
+                                                */
+
+        /*2
+        let elements = React.createElement("section", {
+                id: "receta"
+            },
+            React.createElement("h1", null, "Croquetas"),
+            React.createElement("ul", {
+                    className: "Ingredientes"
+                },
+                React.createElement("li", null, "Huevos"),
+                React.createElement("li", null, "Queso"),
+                React.createElement("li", null, "Harina"),
+                React.createElement("li", null, "Leche"),
+                React.createElement("li", null, "Sal"),
+                React.createElement("li", null, "Azucar"),
+                React.createElement("li", null, "Verduras varias"),
+                React.createElement("li", null, "Chocomilk para la sed")
+            )
+        );
+
+        ReactDOM.render(elements, dcument.getElementById("root"));*/
+        let ingredientes = [
+            "Huevos",
+            "Queso",
+            "Harina",
+            "Leche",
+            "Sal",
+            "Azucar",
+            "Verduras",
+            "Chocomilk",
+        ];
+        let elements = React.createElement("section", {
+                id: "receta"
+            },
+            React.createElement("h1", null, "Croquetas"),
+            React.createElement("ul", {
+                    className: "Ingredientes"
+                },
+                ingredientes.map((el, i) =>
+                    React.createElement("li", {
+                        key: i
+                    }, el))
+            )
+        );
+
+        ReactDOM.render(elements, document.getElementById("root"));
+    </script>
+</body>
+
+</html>

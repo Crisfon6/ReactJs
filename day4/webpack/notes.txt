@@ -1,0 +1,12 @@
+webpack lo que hace es una especie de transpilacion de nuestro codigo por varias razones
+una de ellas es para mejorar la compatiblidad con todos los navegadores y otra es para minificar
+el codigo (dejar todo en una sola line de codigo ), ademas de ahorrarnos la importanciones
+que se harian en el html.
+
+webpack solo hace esto con los arhivos js sin embargo, webpack tiene plugins lo cual permiten
+extender estas funcionalidades a archivos tipo css html enrte otros
+
+ademas de esto tambien existe algo llamado webpack-dev-server el cual es un servidor para el desarrollo 
+
+
+existen tambien los loaders que sirven para importar en desarrollo (example: import css)
